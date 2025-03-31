@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Navbar from "../../components/Navbar";
-import Sidebar from "../../components/Sidebar";
+import Sidebar from "../../components/Sidebar/Sidebar";
 import Content from "../../components/Content";
 
 export default function Home() {
@@ -11,11 +11,11 @@ export default function Home() {
     setIsSidebarOpen(!isSidebarOpen);
   };
   return (
-    <div className="h-screen bg-neutral-900 text-white">
+    <div className="min-h-screen bg-neutral-900 text-white">
       {/* Navbar */}
       <Navbar />
 
-      <div className="flex gap-20 pt-16 h-full">
+      <div className="flex gap-[1%] md:gap-[5%] pt-16 h-full">
         {/* Sidebar */}
         <div className="">
           <Sidebar
@@ -25,7 +25,9 @@ export default function Home() {
         </div>
 
         {/* Main Content */}
-        <Content isSidebarOpen={isSidebarOpen} />
+        <div className="w-[100%] md:w-[75%] ">
+          <Content isSidebarOpen={isSidebarOpen} />
+        </div>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ const dancingScript = Dancing_Script({
 
 const Navbar = () => {
   return (
-    <nav className="w-full p-4 shadow-lg fixed top-0 left-0 z-10 border-b border-neutral-700">
+    <nav className="w-full p-4 shadow-lg fixed top-0 left-0 z-10 bg-neutral-900 border-b border-neutral-700">
       <div className="flex justify-between items-center">
         <h1
           className={`text-4xl font-extrabold cursor-pointer ${dancingScript.className}`}
