@@ -1,12 +1,11 @@
-import React from "react";
+import { Dancing_Script } from "next/font/google";
 import { SearchBar } from "./Searchbar";
 import User from "./Icons/User";
-import { Dancing_Script } from "next/font/google";
 
 const dancingScript = Dancing_Script({
-  weight: ["400", "700"], // Choose weights: 400 (regular), 500, 600, 700 (bold)
-  subsets: ["latin"], // Specify character subsets
-  display: "swap", // Font-display strategy (optional, improves performance)
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  display: "swap",
 });
 
 const Navbar = () => {

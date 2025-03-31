@@ -1,4 +1,3 @@
-import React from "react";
 import { SvgIconsProps } from "../../Types";
 
 const User: React.FC<SvgIconsProps> = ({ height = 20, width = 20 }) => {

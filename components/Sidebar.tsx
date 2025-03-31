@@ -2,7 +2,13 @@ import { useState } from "react";
 import LeftArrowicon from "./Icons/LeftArrowicon";
 import RightArrowIcon from "./Icons/RightArrowIcon";
 
-const Sidebar = ({ isSidebarOpen, handleToggleSidebar }) => {
+const Sidebar = ({
+  isSidebarOpen,
+  handleToggleSidebar,
+}: {
+  isSidebarOpen: boolean;
+  handleToggleSidebar: () => void;
+}) => {
   const filters = {
     platforms: ["YouTube", "Reddit", "Twitter/X"],
     sentiments: ["sentiment1", "sentiment2"],

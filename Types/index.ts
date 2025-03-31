@@ -1,5 +1,7 @@
+import React from "react";
+
 export interface SvgIconsProps {
   height?: number;
   width?: number;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent) => void;
 }

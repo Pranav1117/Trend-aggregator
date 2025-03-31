@@ -3,11 +3,10 @@
 import { useState } from "react";
 import SearchIcon from "./Icons/SearchIcon";
 
-// @ts-ignore
 export const SearchBar = () => {
   const [userInput, setUserInput] = useState("");
 
-  const onSearch = (e) => {
+  const onSearch = (e: React.MouseEvent) => {
     e.preventDefault();
     console.log(userInput);
   };

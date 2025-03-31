@@ -1,11 +1,13 @@
-const Content = ({ isSidebarOpen }) => {
+const Content = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   return (
     <main
       className={`flex flex-col w-[47%] p-6 overflow-y-auto transition-transform transform ${
         isSidebarOpen ? "translate-x-60" : "translate-x-40"
       }`}
     >
-      <h2 className="text-xl font-bold mb-4 text-center">Trending Discussions</h2>
+      <h2 className="text-xl font-bold mb-4 text-center">
+        Trending Discussions
+      </h2>
       <div className="flex flex-col gap-4">
         {[1, 2, 3, 4, 5].map((item) => (
           <div
