@@ -1,23 +1,13 @@
-import { useState } from "react";
 import LeftArrowIcon from "../Icons/LeftArrowicon";
 import RightArrowIcon from "../Icons/RightArrowIcon";
 import { SidebarProps } from "../../Types";
 import { filterSections } from "../../Constant";
 import { FilterSectionComponent } from "./FilterSection";
+import useStore from "@/app/store/useStore";
 
 const Sidebar = ({ isSidebarOpen, handleToggleSidebar }: SidebarProps) => {
-  const [activeFilters, setActiveFilters] = useState<Record<string, string>>({
-    platform: "youtube",
-    sentiment: "sentiment1",
-    engagement: "most_shared",
-  });
-
-  const handleFilterClick = (sectionId: string, itemId: string) => {
-    setActiveFilters((prev) => ({
-      ...prev,
-      [sectionId]: itemId,
-    }));
-  };
+  const activeFilter = useStore((state) => state.activeFilter);
+  const handleFilterClick = useStore((state) => state.setActiveFilter);
 
   return (
     <aside
@@ -38,10 +28,9 @@ const Sidebar = ({ isSidebarOpen, handleToggleSidebar }: SidebarProps) => {
           key={section.title}
           title={section.title}
           items={section.items}
-          activeItem={activeFilters[section.title.toLowerCase().split(" ")[1]]}
-          onItemClick={(itemId) =>
-            handleFilterClick(section.title.toLowerCase().split(" ")[1], itemId)
-          }
+          activeItem={activeFilter}
+          // @ts-ignore
+          onItemClick={(itemId) => handleFilterClick(itemId)}
         />
       ))}
     </aside>

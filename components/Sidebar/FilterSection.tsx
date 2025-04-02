@@ -8,7 +8,7 @@ export const FilterSectionComponent = ({
   }: {
     title: string;
     items: FilterItem[];
-    activeItem: string;
+    activeItem?: string;
     onItemClick: (id: string) => void;
   }) => (
     <div className="border-b pb-2 border-neutral-800">

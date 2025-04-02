@@ -1,4 +1,3 @@
-
 export interface SvgIconsProps {
   height?: number;
   width?: number;
@@ -18,4 +17,6 @@ export type FilterSection = {
 export type SidebarProps = {
   isSidebarOpen: boolean;
   handleToggleSidebar: () => void;
+  activeFilters?: string;
+  handleFilterClick?: () => void;
 };
