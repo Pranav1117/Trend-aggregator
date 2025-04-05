@@ -6,7 +6,8 @@ export const filterSections: FilterSection[] = [
     items: [
       { id: "youtube", label: "YouTube" },
       { id: "reddit", label: "Reddit" },
-      { id: "twitter", label: "Twitter/X" },
+      //  TODO => add twitter data with scrapping
+      // { id: "twitter", label: "Twitter/X" },
     ],
   },
   {
