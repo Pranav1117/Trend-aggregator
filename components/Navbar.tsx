@@ -1,4 +1,5 @@
 import { Dancing_Script } from "next/font/google";
+import Link from "next/link";
 import { SearchBar } from "./Searchbar";
 import User from "./Icons/User";
 
@@ -10,13 +11,15 @@ const dancingScript = Dancing_Script({
 
 const Navbar = () => {
   return (
-    <nav className="w-full p-4 shadow-lg fixed top-0 left-0 z-10 bg-neutral-900 border-b border-neutral-700">
+    <nav className="w-full p-4 text-white shadow-lg fixed top-0 left-0 z-10 bg-neutral-900 border-b border-neutral-700">
       <div className="flex justify-between items-center">
-        <h1
-          className={`text-4xl font-extrabold cursor-pointer ${dancingScript.className}`}
-        >
-          Trend's
-        </h1>
+        <Link href={"/"}>
+          <h1
+            className={`text-4xl  font-extrabold cursor-pointer ${dancingScript.className}`}
+          >
+            Trend's
+          </h1>
+        </Link>
 
         {/* Searchbar */}
         <div className="w-[40%] h-10">

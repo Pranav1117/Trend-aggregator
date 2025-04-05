@@ -14,10 +14,8 @@ export const SearchBar = () => {
     );
     console.log(res);
   };
-
   const onSearch = (e: React.MouseEvent) => {
     e.preventDefault();
-    console.log(searchQuery);
     fetchData(searchQuery);
   };
 

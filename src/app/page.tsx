@@ -12,8 +12,6 @@ export default function Home() {
   };
   return (
     <div className="min-h-screen bg-neutral-900 text-white">
-      {/* Navbar */}
-      <Navbar />
 
       <div className="flex gap-[1%] md:gap-[5%] pt-16 h-full">
         {/* Sidebar */}

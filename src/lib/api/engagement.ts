@@ -65,14 +65,7 @@ export async function fetchDiscussions(
       return response.data[1].data.children.map((c: any) => c.data.body);
     } else if (platform === "youtube") {
       response = await axios.get(
-        `https://www.googleapis.com/youtube/v3/commentThreads`,
-        {
-          params: {
-            videoId: postId,
-            part: "snippet",
-            key: process.env.YOUTUBE_API_KEY,
-          },
-        }
+        `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=${postId}&key=${process.env.YOUTUBE_API_KEY}`
       );
       return response.data.items.map(
         (c: any) => c.snippet.topLevelComment.snippet.textDisplay
