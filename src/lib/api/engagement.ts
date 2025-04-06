@@ -15,16 +15,17 @@ export async function fetchYouTubeEngagement() {
 
     const { data } = await axios.get(url, { params });
     if (!data.items) return [];
-
     return data.items.map((video: any) => ({
+      id: video.id,
       platform: "YouTube",
-      title: video.snippet.title,
-      likes: video.statistics.likeCount
-        ? parseInt(video.statistics.likeCount)
+      title: video.snippet?.title,
+      thumbnail: video.snippet?.thumbnails.medium.url,
+      likes: video?.statistics.likeCount
+        ? parseInt(video?.statistics.likeCount)
         : 0,
-      views: parseInt(video.statistics.viewCount),
-      comments: parseInt(video.statistics.commentCount || 0),
-      url: `https://www.youtube.com/watch?v=${video.id}`,
+      views: parseInt(video?.statistics.viewCount),
+      comments: parseInt(video?.statistics.commentCount || 0),
+      url: `https://www.youtube.com/watch?v=${video?.id}`,
     }));
   } catch (error) {
     console.error("YouTube API Error:", error);
@@ -37,10 +38,12 @@ export async function fetchRedditEngagement(subreddit = "all") {
     const url = `https://www.reddit.com/r/${subreddit}/top.json?t=day&limit=10`;
     const { data } = await axios.get(url);
     if (!data.data) return [];
-
+    console.log("data", data.data.children[0]);
     return data.data.children.map((post: any) => ({
+      id: post.data.id,
       platform: "Reddit",
       title: post.data.title,
+      thumbnail: post.data.thumbnail,
       upvotes: post.data.ups,
       comments: post.data.num_comments,
       awards: post.data.total_awards_received || 0,

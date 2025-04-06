@@ -4,6 +4,7 @@ import Image from "next/image";
 import axios from "axios";
 import { timeAgo } from "../utils";
 import useStore from "@/app/store/useStore";
+import Thumbnail from "./Thumbnail";
 
 const Content = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   const router = useRouter();
@@ -57,16 +58,9 @@ const Content = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
                   >
                     {/*Thumbnail publishedat and channel */}
                     <div className="flex gap-2 items-center">
-                      <Image
-                        src={item.thumbnail || ""}
-                        // src={"/1.png"}
-                        height={20}
-                        width={20}
-                        alt="s"
-                        className="rounded-full object-cover"
-                      />
+                      <Thumbnail item={item} />
                       <p className="text-neutral-300 text-[13px]">
-                        {item?.channelTitle}
+                        {item?.channel}
                       </p>
                       <span className="text-neutral-300 ">•</span>
                       <p className="text-neutral-400 text-[13px]">
@@ -103,16 +97,9 @@ const Content = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
                     >
                       {/*Thumbnail publishedat and channel */}
                       <div className="flex gap-2 items-center">
-                        <Image
-                          src={item.thumbnail || ""}
-                          // src={"/1.png"}
-                          height={20}
-                          width={20}
-                          alt="s"
-                          className="rounded-full object-cover"
-                        />
+                        <Thumbnail item={item} />
                         <p className="text-neutral-300 text-[13px]">
-                          {item?.channelTitle}
+                          {item?.channel}
                         </p>
                         <span className="text-neutral-300 ">•</span>
                         <p className="text-neutral-400 text-[13px]">
