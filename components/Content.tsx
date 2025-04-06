@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Image from "next/image";
 import axios from "axios";
 import { timeAgo } from "../utils";
 import useStore from "@/app/store/useStore";

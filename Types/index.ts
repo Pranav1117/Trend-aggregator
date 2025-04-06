@@ -20,3 +20,23 @@ export type SidebarProps = {
   activeFilters?: string;
   handleFilterClick?: () => void;
 };
+
+export interface Item {
+  id: string;
+  title: string;
+  description?: string;
+  thumbnail?: string;
+  publishedAt?: string;
+  channel?: string;
+  source?: string;
+}
+
+export interface StoreState {
+  searchQuery: string;
+  activeFilter: string;
+  fetchedData: Item[];
+
+  setSearchQuery: (query: string) => void;
+  setActiveFilter: (filter: string) => void;
+  setFetchedData: (data: Item[]) => void;
+}

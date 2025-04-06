@@ -1,4 +1,3 @@
-import React from "react";
 import { SvgIconsProps } from "../../Types";
 
 const SearchIcon: React.FC<SvgIconsProps> = ({

@@ -1,6 +1,7 @@
 import { create } from "zustand";
+import { StoreState } from "../../../Types";
 
-const useStore = create((set) => ({
+const useStore = create<StoreState>((set) => ({
   searchQuery: "",
   activeFilter: "youtube",
   fetchedData: [],
