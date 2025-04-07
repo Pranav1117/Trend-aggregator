@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { timeAgo } from "../src/lib/utils";
@@ -11,8 +11,10 @@ const Content = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   const activeFilter = useStore((state) => state.activeFilter);
   const searchQuery = useStore((state) => state.searchQuery);
   const fetchedData = useStore((state) => state.fetchedData);
+  const loading = useStore((state) => state.loading);
+
+  const setLoading = useStore((state) => state.setLoading);
   const setFetchedData = useStore((state) => state.setFetchedData);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async (query?: string) => {

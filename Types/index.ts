@@ -29,15 +29,17 @@ export interface Item {
   publishedAt?: string;
   channel?: string;
   source?: string;
-  platform?:string;
+  platform?: string;
 }
 
 export interface StoreState {
   searchQuery: string;
   activeFilter: string;
   fetchedData: Item[];
+  loading: boolean;
 
   setSearchQuery: (query: string) => void;
   setActiveFilter: (filter: string) => void;
   setFetchedData: (data: Item[]) => void;
+  setLoading: (data: boolean) => void;
 }

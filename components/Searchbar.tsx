@@ -6,14 +6,25 @@ import useStore from "@/app/store/useStore";
 
 export const SearchBar = () => {
   const searchQuery = useStore((state) => state.searchQuery);
+  const loading = useStore((state) => state.loading);
+
   const setSearchQuery = useStore((state) => state.setSearchQuery);
+  const setLoading = useStore((state) => state.setLoading);
 
   const fetchData = async (query?: string) => {
-    const res = await axios(
-      `http://192.168.0.103:3000/api/search?q=${query ?? "trending"}`
-    );
-    console.log(res);
+    setLoading(true);
+    try {
+      const res = await axios(
+        `http://192.168.0.104:3000/api/search?q=${query ?? "trending"}`
+      );
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
+
   const onSearch = (e: React.MouseEvent) => {
     e.preventDefault();
     fetchData(searchQuery);
