@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function fetchRedditTrends(query: string) {
+export async function fetchRedditTrends(query: string | null) {
   const url =
     query === "trendig"
       ? `https://www.reddit.com/r/all/hot.json?limit=10`

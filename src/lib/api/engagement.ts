@@ -18,8 +18,10 @@ export async function fetchYouTubeEngagement() {
     return data.items.map((video: any) => ({
       id: video.id,
       platform: "YouTube",
+      channel: video.snippet.channelTitle,
       title: video.snippet?.title,
       thumbnail: video.snippet?.thumbnails.medium.url,
+      description: video.snippet?.description,
       likes: video?.statistics.likeCount
         ? parseInt(video?.statistics.likeCount)
         : 0,
@@ -38,11 +40,12 @@ export async function fetchRedditEngagement(subreddit = "all") {
     const url = `https://www.reddit.com/r/${subreddit}/top.json?t=day&limit=10`;
     const { data } = await axios.get(url);
     if (!data.data) return [];
-    console.log("data", data.data.children[0]);
     return data.data.children.map((post: any) => ({
       id: post.data.id,
       platform: "Reddit",
+      channel: post.data.subreddit_name_prefixed,
       title: post.data.title,
+      description: post.data.selftext || "No description available",
       thumbnail: post.data.thumbnail,
       upvotes: post.data.ups,
       comments: post.data.num_comments,

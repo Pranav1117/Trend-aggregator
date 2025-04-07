@@ -15,7 +15,6 @@ export async function GET(request: NextRequest) {
       result: [...youtubeData, ...redditData],
     });
   } catch (error) {
-    console.error("Error fetching engagement data:", error);
     return NextResponse.json(
       {
         error: "Failed to fetch engagement data",
