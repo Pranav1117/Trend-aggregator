@@ -4,6 +4,7 @@ import axios from "axios";
 import { timeAgo } from "../src/lib/utils";
 import useStore from "@/app/store/useStore";
 import Thumbnail from "./Thumbnail";
+import ContentLoader from "./SkeletonLoaders/ContentLoadet";
 
 const Content = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   const router = useRouter();
@@ -43,7 +44,11 @@ const Content = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
         `}
     >
       {loading ? (
-        <p>Loading</p>
+        [0, 1, 2, 3, 4].map((_, index) => (
+          <div key={index} className="flex flex-col">
+            <ContentLoader />
+          </div>
+        ))
       ) : (
         <>
           <h2 className="text-xl font-bold px-4 mb-4 ">
