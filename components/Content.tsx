@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { timeAgo } from "../utils";
+import { timeAgo } from "../src/lib/utils";
 import useStore from "@/app/store/useStore";
 import Thumbnail from "./Thumbnail";
 
@@ -45,7 +45,8 @@ const Content = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
       ) : (
         <>
           <h2 className="text-xl font-bold px-4 mb-4 ">
-            Results by {activeFilter}
+            Results by{" "}
+            {activeFilter === "most_shared" ? "Engagement" : activeFilter}
           </h2>
           <div className="flex flex-col gap-4">
             {fetchedData.length > 0 && activeFilter === "most_shared"
@@ -77,6 +78,9 @@ const Content = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
                           : item.description
                         : "No description"}
                     </p>
+                    <span className="px-2 py-1 bg-neutral-700 rounded">
+                      {item.platform}
+                    </span>
                   </div>
                 ))
               : ""}

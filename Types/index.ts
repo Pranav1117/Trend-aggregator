@@ -29,6 +29,7 @@ export interface Item {
   publishedAt?: string;
   channel?: string;
   source?: string;
+  platform?:string;
 }
 
 export interface StoreState {

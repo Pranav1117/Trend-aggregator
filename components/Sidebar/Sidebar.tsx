@@ -1,7 +1,7 @@
 import LeftArrowIcon from "../Icons/LeftArrowicon";
 import RightArrowIcon from "../Icons/RightArrowIcon";
 import { SidebarProps } from "../../Types";
-import { filterSections } from "../../Constant";
+import { FILTER_SECTION } from "../../Constant";
 import { FilterSectionComponent } from "./FilterSection";
 import useStore from "@/app/store/useStore";
 
@@ -23,7 +23,7 @@ const Sidebar = ({ isSidebarOpen, handleToggleSidebar }: SidebarProps) => {
         {isSidebarOpen ? <LeftArrowIcon /> : <RightArrowIcon />}
       </button>
 
-      {filterSections.map((section) => (
+      {FILTER_SECTION.map((section) => (
         <FilterSectionComponent
           key={section.title}
           title={section.title}

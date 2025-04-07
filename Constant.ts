@@ -11,7 +11,7 @@ export const PROMPT = `You are an AI assistant tasked with summarizing discussio
 
     Here is the input:`;
 
-export const filterSections: FilterSection[] = [
+export const FILTER_SECTION: FilterSection[] = [
   {
     title: "Filter by Platform",
     items: [
@@ -24,15 +24,15 @@ export const filterSections: FilterSection[] = [
   {
     title: "Filter by Engagement",
     items: [
-      { id: "most_shared", label: "Most Shared" },
-      { id: "most_liked", label: "Most Liked" },
+      { id: "most_shared", label: "Most Engage" },
+      // { id: "most_liked", label: "Most Liked" },
     ],
   },
-  {
-    title: "Filter by Sentiments",
-    items: [
-      { id: "sentiment1", label: "Sentiment 1" },
-      { id: "sentiment2", label: "Sentiment 2" },
-    ],
-  },
+  // {
+  //   title: "Filter by Sentiments",
+  //   items: [
+  //     { id: "sentiment1", label: "Sentiment 1" },
+  //     { id: "sentiment2", label: "Sentiment 2" },
+  //   ],
+  // },
 ];

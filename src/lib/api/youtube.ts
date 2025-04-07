@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export async function fetchYouTubeTrends(query: string) {
+export async function fetchYouTubeTrends(query: string|null) {
   const API_KEY = process.env.YOUTUBE_API_KEY;
   const url =
     query === "trending"
