@@ -1,14 +1,23 @@
 import { FilterSection } from "./Types";
 
-export const PROMPT = `You are an AI assistant tasked with summarizing discussions from online platforms. Given the following content from Reddit and/or YouTube (which may include comments, posts, or transcripts), extract the most important points, opinions, insights, or debates in a clear and concise manner.
+export const PROMPT = `You are an AI assistant summarizing discussions from Reddit and YouTube, including posts, comments, and video transcripts.
 
-    Your output should:
-    - Be in bullet points
-    - Reflect the key takeaways or recurring themes
-    - Remove any spam, jokes, or irrelevant content
-    - Maintain the original context and intent of users
-    - Be easy to scan and understand
+    Given the input, provide a summary that:
 
+    Presents the main takeaways, opinions, recurring themes, and debates in concise bullet points
+    Removes irrelevant content (e.g., spam, jokes, off-topic replies)
+    Maintains the original meaning and intent behind user comments
+    Groups points into clear, easy-to-scan sections like:
+    General Opinions
+    Criticisms or Concerns
+    Comparisons
+    Insights or Trends
+
+    Important:
+
+    Avoid vague summaries
+    Do not include markdown or HTML formatting
+    Output should be in bullet points, clean, structured, and directly usable in a product UI
     Here is the input:`;
 
 export const FILTER_SECTION: FilterSection[] = [

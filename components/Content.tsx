@@ -4,7 +4,7 @@ import axios from "axios";
 import { timeAgo } from "../src/lib/utils";
 import useStore from "@/app/store/useStore";
 import Thumbnail from "./Thumbnail";
-import ContentLoader from "./SkeletonLoaders/ContentLoadet";
+import ContentLoader from "./SkeletonLoaders/ContentLoader";
 
 const Content = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   const router = useRouter();
@@ -61,7 +61,11 @@ const Content = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
                   <div
                     key={item.id}
                     className="p-4 shadow-md cursor-pointer border-b-[0.1px] border-neutral-800 space-y-2 hover:bg-neutral-800"
-                    onClick={() => router.push("/postsummary")}
+                    onClick={() =>
+                      router.push(
+                        `/postsummary?id=${item?.id}&platform=${item?.source}&title=${item.title}&channel=${item.channel}&publishAt=${item.publishedAt}`
+                      )
+                    }
                   >
                     {/*Thumbnail publishedat and channel */}
                     <div className="flex gap-2 items-center">
@@ -92,7 +96,8 @@ const Content = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
                 ))
               : ""}
 
-            {fetchedData.length > 0
+            {fetchedData.length > 0 &&
+            (activeFilter === "reddit" || activeFilter === "youtube")
               ? fetchedData
                   ?.filter((value) => activeFilter === value.source)
                   .map((item, index) => (
@@ -101,7 +106,7 @@ const Content = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
                       className="p-4 shadow-md cursor-pointer border-b-[0.1px] border-neutral-800 space-y-2 hover:bg-neutral-800"
                       onClick={() =>
                         router.push(
-                          `/postsummary?id=${item?.id}&platform=${item?.source}`
+                          `/postsummary?id=${item?.id}&platform=${item?.source}&title=${item.title}&channel=${item.channel}&publishAt=${item.publishedAt}`
                         )
                       }
                     >

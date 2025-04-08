@@ -18,6 +18,5 @@ export function timeAgo(timestamp) {
             return `${count} ${unit}${count > 1 ? "s" : ""} ago`;
         }
     }
-
     return "just now";
 }
