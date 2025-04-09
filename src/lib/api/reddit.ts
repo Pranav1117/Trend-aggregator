@@ -17,10 +17,11 @@ interface RedditPost {
 
 export async function fetchRedditTrends(query: string | null) {
   const accessToken = await getRedditAccessToken();
+
   const url =
     query === "trendig"
-      ? `https://www.reddit.com/r/all/hot.json?limit=10`
-      : `https://www.reddit.com/search.json?q=${query}&sort=top`;
+      ? `https://oauth.reddit.com/r/all/hot?limit=10`
+      : `https://oauth.reddit.com/search?q=${query}&sort=top&type=link`;
 
   const { data } = await axios.get(url, {
     headers: {

@@ -8,7 +8,6 @@ export async function GET(request: Request) {
 
   const YTResponse = await fetchYouTubeTrends(searchQuery);
   const redditResponse = await fetchRedditTrends(searchQuery);
-  console.log("Reddit respoinse ------------", redditResponse);
 
   const response = [...YTResponse, ...redditResponse];
   return NextResponse.json({

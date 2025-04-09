@@ -89,7 +89,7 @@ export async function fetchYouTubeEngagement() {
 export async function fetchRedditEngagement(subreddit = "all") {
   try {
     const accessToken = await getRedditAccessToken();
-    const url = `https://www.reddit.com/r/${subreddit}/top.json?t=day&limit=10`;
+    const url = `https://oauth.reddit.com/r/${subreddit}/top?t=day&limit=10`;
     const { data } = await axios.get(url, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
