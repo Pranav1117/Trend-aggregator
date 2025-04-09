@@ -93,7 +93,7 @@ export async function fetchRedditEngagement(subreddit = "all") {
     const { data } = await axios.get(url, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
-        "User-Agent": `my-app/0.1 by u/${process.env.REDDIT_USERNAME}`,
+        "User-Agent": `trend aggregator/0.1 by u/${process.env.REDDIT_USERNAME}`,
       },
     });
     if (!data.data) return [];

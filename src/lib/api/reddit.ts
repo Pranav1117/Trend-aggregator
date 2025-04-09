@@ -25,7 +25,7 @@ export async function fetchRedditTrends(query: string | null) {
   const { data } = await axios.get(url, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
-      "User-Agent": `my-app/0.1 by u/${process.env.REDDIT_USERNAME}`,
+      "User-Agent": `trend aggregator/0.1 by u/${process.env.REDDIT_USERNAME}`,
     },
   });
   return data.data.children.map((post: RedditPost) => ({
@@ -64,7 +64,7 @@ export async function getRedditAccessToken() {
       headers: {
         Authorization: `Basic ${auth}`,
         "Content-Type": "application/x-www-form-urlencoded",
-        "User-Agent": `your-app/1.0 (by u/${process.env.REDDIT_USERNAME})`,
+        "User-Agent": `trend aggregator/1.0 (by u/${process.env.REDDIT_USERNAME})`,
       },
     }
   );
