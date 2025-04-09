@@ -12,6 +12,7 @@ interface PostProps {
       selftext: string;
       thumbnail: string;
       approved_at_utc: string;
+      permalink?: string;
     };
   };
 }
