@@ -3,7 +3,7 @@ import { fetchYouTubeTrends } from "@/lib/api/youtube";
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
-  console.log(process.env.YOUTUBE_API_KEY);
+  console.log("YT env var", process.env.YOUTUBE_API_KEY);
   const { searchParams } = new URL(request.url);
   const searchQuery: string | null = searchParams.get("q");
 
