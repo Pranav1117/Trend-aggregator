@@ -28,7 +28,7 @@ const PostSummary = () => {
       }
     }
     getAIResponse();
-  }, []);
+  }, [platform, id]);
 
   return (
     <div className="bg-neutral-900 text-white min-h-[100vh]">
@@ -48,18 +48,22 @@ const PostSummary = () => {
             </span>
           </div>
         </div>
-        {data.split("\n").map((line, index) => (
-          <p
-            className={`${
-              line.startsWith("**")
-                ? "text-2xl font-semibold mt-6"
-                : "text-gray-300"
-            }`}
-            key={index}
-          >
-            {line}
-          </p>
-        ))}
+        {!data ? (
+          <p className="text-neutral-400">Summarizing discussion...</p>
+        ) : (
+          data.split("\n").map((line, index) => (
+            <p
+              className={`${
+                line.startsWith("**")
+                  ? "text-2xl font-semibold mt-6"
+                  : "text-gray-300"
+              }`}
+              key={index}
+            >
+              {line}
+            </p>
+          ))
+        )}
       </div>
     </div>
   );
