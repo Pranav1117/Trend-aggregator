@@ -3,7 +3,7 @@ import axios from "axios";
 const GROK_LLAMA_KEY = process.env.GROK_LLAMA_KEY;
 const GROK_MODEL = process.env.GROK_MODEL;
 
-export async function summarizeText(text: string): Promise<string> {
+export async function summarizeText(text: string) {
   try {
     const response = await axios.post(
       `https://api.groq.com/openai/v1/chat/completions`,
