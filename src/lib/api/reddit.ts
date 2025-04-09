@@ -16,13 +16,19 @@ interface RedditPost {
 }
 
 export async function fetchRedditTrends(query: string | null) {
+  const accessToken = await getRedditAccessToken();
   const url =
     query === "trendig"
       ? `https://www.reddit.com/r/all/hot.json?limit=10`
       : `https://www.reddit.com/search.json?q=${query}&sort=top`;
 
-  const { data } = await axios.get(url);
-  return data.data.children.map(( post : RedditPost) => ({
+  const { data } = await axios.get(url, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "User-Agent": `my-app/0.1 by u/${process.env.REDDIT_USERNAME}`,
+    },
+  });
+  return data.data.children.map((post: RedditPost) => ({
     source: "reddit",
     id: post.data.id,
     title: post.data.title,
@@ -58,7 +64,7 @@ export async function getRedditAccessToken() {
       headers: {
         Authorization: `Basic ${auth}`,
         "Content-Type": "application/x-www-form-urlencoded",
-        "User-Agent": "your-app/1.0 (by u/yourRedditUsername)",
+        "User-Agent": `your-app/1.0 (by u/${process.env.REDDIT_USERNAME})`,
       },
     }
   );
