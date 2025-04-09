@@ -1,19 +1,17 @@
 import axios from "axios";
 
-interface PostProps {
-  post: {
-    data: {
-      id: string;
-      source: string;
-      title: string;
-      subreddit: string;
-      author_fullname: string;
-      url: string;
-      selftext: string;
-      thumbnail: string;
-      approved_at_utc: string;
-      permalink?: string;
-    };
+interface RedditPost {
+  data: {
+    id: string;
+    source?: string; // this doesn't come from Reddit API, you're adding it manually
+    title: string;
+    subreddit: string;
+    author_fullname: string;
+    url: string;
+    selftext: string;
+    thumbnail: string;
+    approved_at_utc: string;
+    permalink?: string;
   };
 }
 
@@ -24,7 +22,7 @@ export async function fetchRedditTrends(query: string | null) {
       : `https://www.reddit.com/search.json?q=${query}&sort=top`;
 
   const { data } = await axios.get(url);
-  return data.data.children.map(({ post }: PostProps) => ({
+  return data.data.children.map(( post : RedditPost) => ({
     source: "reddit",
     id: post.data.id,
     title: post.data.title,

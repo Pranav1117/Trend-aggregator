@@ -21,8 +21,8 @@ const Content = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
     const fetchData = async (query?: string) => {
       const url =
         activeFilter === "most_shared"
-          ? "http://192.168.0.104:3000/api/engagement"
-          : `http://192.168.0.104:3000/api/search?q=${query || "trending"}`;
+          ? `/api/engagement`
+          : `/api/search?q=${query || "trending"}`;
       try {
         const { status, data } = await axios(url);
         if (status === 200) {
