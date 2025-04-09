@@ -40,8 +40,7 @@ const PostSummary = () => {
             <div className="">
               <div>{channel}</div>
               <div className="text-xs text-neutral-400">
-              {/* @ts-ignore */}
-                {timeAgo(publishAt)}
+                {timeAgo(publishAt || "")}
               </div>
             </div>
             <span className="px-2 py-1 h-[30px] bg-neutral-700 rounded text-sm ">

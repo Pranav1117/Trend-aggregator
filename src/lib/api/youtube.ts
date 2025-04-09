@@ -1,6 +1,6 @@
 import axios from "axios";
 interface YouTubeVideo {
-  id: { videoId: string } | string ;
+  id: { videoId: string } | string;
   snippet: {
     title: string;
     channelTitle: string;
@@ -23,9 +23,8 @@ export async function fetchYouTubeTrends(query: string | null) {
 
   const { data } = await axios.get(url);
   return data.items.map((video: YouTubeVideo) => {
-    const isTrending = query === "trending";
-    // @ts-expect-error
-    const videoId = isTrending ? video.id : video.id.videoId;
+    // const isTrending = query === "trending";
+    const videoId = typeof video.id === "string" ? video.id : video.id.videoId;
 
     return {
       source: "youtube",
