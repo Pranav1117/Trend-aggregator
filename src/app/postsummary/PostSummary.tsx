@@ -33,9 +33,9 @@ const PostSummary = () => {
   return (
       <div className="bg-neutral-900 text-white min-h-[100vh]">
         {" "}
-        <div className="pt-22 w-[60%] mx-auto">
+        <div className="pt-22 p-6 md:p-0 md:w-[60%] mx-auto">
           <div className="mb-8 border-b-1 border-gray-600 py-3">
-            <h2 className="text-4xl mb-4">{title}</h2>
+            <h2 className="md:text-4xl mb-4">{title}</h2>
             <div className="flex justify-between items-center">
               <div className="">
                 <div>{channel}</div>

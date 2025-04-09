@@ -12,7 +12,7 @@ const Sidebar = ({ isSidebarOpen, handleToggleSidebar }: SidebarProps) => {
   return (
     <aside
       className={`bg-neutral-900 z-9 w-[100%] md:w-[20%] shadow-lg p-4 space-y-4 fixed flex flex-col top-18 left-0 h-full transition-transform transform border-r border-neutral-700
-       ${isSidebarOpen ? "translate-x-0" : "-translate-x-[92%]"}`}
+       ${isSidebarOpen ? "translate-x-0" : "-translate-x-[98%] md:-translate-x-[92%]"}`}
       aria-hidden={!isSidebarOpen}
     >
       <button

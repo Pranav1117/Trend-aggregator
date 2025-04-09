@@ -39,7 +39,7 @@ const Content = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
   }, [activeFilter]);
   return (
     <main
-      className={`flex flex-col p-6 overflow-y-auto transition-transform transform ml-4 w-[100%] md:w-[75%]
+      className={`flex flex-col p-4 md:p-6 overflow-y-auto transition-transform transform md:ml-4  w-[100%] md:w-[75%]
         ${isSidebarOpen ? "md:translate-x-60" : "md:translate-x-40"}
         `}
     >

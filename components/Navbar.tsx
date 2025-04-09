@@ -14,14 +14,14 @@ const Navbar = () => {
       <div className="flex items-center">
         <Link href={"/"}>
           <h1
-            className={`text-4xl font-extrabold cursor-pointer ${dancingScript.className}`}
+            className={`text-2xl md:text-4xl font-extrabold cursor-pointer ${dancingScript.className}`}
           >
             Trend&apos;s
           </h1>
         </Link>
 
         {/* Searchbar */}
-        <div className="w-[40%] mx-auto h-10">
+        <div className=" md:w-[40%] mx-auto h-10">
           <SearchBar />
         </div>
 
