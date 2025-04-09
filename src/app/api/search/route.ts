@@ -5,10 +5,10 @@ import { NextResponse } from "next/server";
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const searchQuery: string | null = searchParams.get("q");
-  
+
   const YTResponse = await fetchYouTubeTrends(searchQuery);
-  console.log("YT respoinse ------------", YTResponse);
   const redditResponse = await fetchRedditTrends(searchQuery);
+  console.log("Reddit respoinse ------------", redditResponse);
 
   const response = [...YTResponse, ...redditResponse];
   return NextResponse.json({
