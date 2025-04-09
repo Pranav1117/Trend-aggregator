@@ -29,7 +29,6 @@ const Sidebar = ({ isSidebarOpen, handleToggleSidebar }: SidebarProps) => {
           title={section.title}
           items={section.items}
           activeItem={activeFilter}
-          // @ts-ignore
           onItemClick={(itemId) => handleFilterClick(itemId)}
         />
       ))}

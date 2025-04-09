@@ -1,6 +1,19 @@
 import axios from "axios";
-
-export async function fetchYouTubeTrends(query: string|null) {
+interface YouTubeVideo {
+  id: { videoId: string } | string ;
+  snippet: {
+    title: string;
+    channelTitle: string;
+    description?: string;
+    publishedAt: string;
+    thumbnails: {
+      default: {
+        url: string;
+      };
+    };
+  };
+}
+export async function fetchYouTubeTrends(query: string | null) {
   const API_KEY = process.env.YOUTUBE_API_KEY;
   const url =
     query === "trending"
@@ -9,8 +22,9 @@ export async function fetchYouTubeTrends(query: string|null) {
       : `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&key=${API_KEY}`;
 
   const { data } = await axios.get(url);
-  return data.items.map((video: any) => {
+  return data.items.map((video: YouTubeVideo) => {
     const isTrending = query === "trending";
+    // @ts-expect-error
     const videoId = isTrending ? video.id : video.id.videoId;
 
     return {

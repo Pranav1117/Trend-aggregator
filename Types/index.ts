@@ -26,7 +26,7 @@ export interface Item {
   title: string;
   description?: string;
   thumbnail?: string;
-  publishedAt?: string;
+  publishedAt: string | number | Date;
   channel?: string;
   source?: string;
   platform?: string;

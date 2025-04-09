@@ -16,7 +16,7 @@ const Navbar = () => {
           <h1
             className={`text-4xl font-extrabold cursor-pointer ${dancingScript.className}`}
           >
-            Trend's
+            Trend&apos;s
           </h1>
         </Link>
 

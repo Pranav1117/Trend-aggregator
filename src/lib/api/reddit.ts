@@ -1,5 +1,21 @@
 import axios from "axios";
 
+interface PostProps {
+  post: {
+    data: {
+      id: string;
+      source: string;
+      title: string;
+      subreddit: string;
+      author_fullname: string;
+      url: string;
+      selftext: string;
+      thumbnail: string;
+      approved_at_utc: string;
+    };
+  };
+}
+
 export async function fetchRedditTrends(query: string | null) {
   const url =
     query === "trendig"
@@ -7,7 +23,7 @@ export async function fetchRedditTrends(query: string | null) {
       : `https://www.reddit.com/search.json?q=${query}&sort=top`;
 
   const { data } = await axios.get(url);
-  return data.data.children.map((post: any) => ({
+  return data.data.children.map(({ post }: PostProps) => ({
     source: "reddit",
     id: post.data.id,
     title: post.data.title,

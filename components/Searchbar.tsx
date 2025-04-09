@@ -1,19 +1,23 @@
 "use client";
 
 import axios from "axios";
+import { useRouter, usePathname } from "next/navigation";
 import SearchIcon from "./Icons/SearchIcon";
 import useStore from "@/app/store/useStore";
 
 export const SearchBar = () => {
-  const searchQuery = useStore((state) => state.searchQuery);
+  const router = useRouter();
+  const pathname = usePathname();
 
+  const searchQuery = useStore((state) => state.searchQuery);
+  
   const setSearchQuery = useStore((state) => state.setSearchQuery);
   const setLoading = useStore((state) => state.setLoading);
 
   const fetchData = async (query?: string) => {
     setLoading(true);
     try {
-      const res = await axios(
+      await axios(
         `http://192.168.0.104:3000/api/search?q=${query ?? "trending"}`
       );
     } catch (error) {
@@ -26,6 +30,10 @@ export const SearchBar = () => {
   const onSearch = (e: React.MouseEvent) => {
     e.preventDefault();
     fetchData(searchQuery);
+
+    if (pathname !== "/") {
+      router.push("/");
+    }
   };
 
   return (

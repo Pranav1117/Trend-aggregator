@@ -17,7 +17,7 @@ export async function fetchYouTubeEngagement() {
     if (!data.items) return [];
     return data.items.map((video: any) => ({
       id: video.id,
-      platform: "YouTube",
+      source: "YouTube",
       channel: video.snippet.channelTitle,
       title: video.snippet?.title,
       thumbnail: video.snippet?.thumbnails.medium.url,
@@ -28,6 +28,7 @@ export async function fetchYouTubeEngagement() {
       views: parseInt(video?.statistics.viewCount),
       comments: parseInt(video?.statistics.commentCount || 0),
       url: `https://www.youtube.com/watch?v=${video?.id}`,
+      publishAt: video.snippet.publishedAt,
     }));
   } catch (error) {
     console.error("YouTube API Error:", error);
@@ -42,7 +43,7 @@ export async function fetchRedditEngagement(subreddit = "all") {
     if (!data.data) return [];
     return data.data.children.map((post: any) => ({
       id: post.data.id,
-      platform: "Reddit",
+      source: "Reddit",
       channel: post.data.subreddit_name_prefixed,
       title: post.data.title,
       description: post.data.selftext || "No description available",
@@ -51,6 +52,7 @@ export async function fetchRedditEngagement(subreddit = "all") {
       comments: post.data.num_comments,
       awards: post.data.total_awards_received || 0,
       url: `https://www.reddit.com${post.data.permalink}`,
+      publishAt: post.data.approved_at_utc,
     }));
   } catch (error) {
     console.error("Reddit API Error:", error);
@@ -64,12 +66,12 @@ export async function fetchDiscussions(
 ): Promise<string[]> {
   try {
     let response;
-    if (platform === "reddit") {
+    if (platform.toLowerCase() === "reddit") {
       response = await axios.get(
         `https://www.reddit.com/comments/${postId}.json`
       );
       return response.data[1].data.children.map((c: any) => c.data.body);
-    } else if (platform === "youtube") {
+    } else if (platform.toLowerCase() === "youtube") {
       response = await axios.get(
         `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=${postId}&key=${process.env.YOUTUBE_API_KEY}`
       );

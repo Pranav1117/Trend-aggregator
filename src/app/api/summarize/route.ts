@@ -24,6 +24,7 @@ export async function POST(request: NextRequest) {
     const summary = await summarizeText(`${PROMPT}+ ${text}`);
     return NextResponse.json({ ...summary, postTitle: "" });
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { error: "Failed to process request" },
       { status: 500 }

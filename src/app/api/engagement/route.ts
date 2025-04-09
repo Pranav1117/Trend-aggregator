@@ -4,7 +4,7 @@ import {
   fetchYouTubeEngagement,
 } from "@/lib/api/engagement";
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const [youtubeData, redditData] = await Promise.all([
       fetchYouTubeEngagement(),

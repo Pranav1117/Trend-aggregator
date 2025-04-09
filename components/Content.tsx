@@ -57,7 +57,7 @@ const Content = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
           </h2>
           <div className="flex flex-col gap-4">
             {fetchedData.length > 0 && activeFilter === "most_shared"
-              ? fetchedData.map((item, index) => (
+              ? fetchedData.map((item) => (
                   <div
                     key={item.id}
                     className="p-4 shadow-md cursor-pointer border-b-[0.1px] border-neutral-800 space-y-2 hover:bg-neutral-800"
@@ -69,7 +69,7 @@ const Content = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
                   >
                     {/*Thumbnail publishedat and channel */}
                     <div className="flex gap-2 items-center">
-                      <Thumbnail item={item} />
+                      <Thumbnail thumbnail={item.thumbnail} />
                       <p className="text-neutral-300 text-[13px]">
                         {item?.channel}
                       </p>
@@ -90,7 +90,7 @@ const Content = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
                         : "No description"}
                     </p>
                     <span className="px-2 py-1 bg-neutral-700 rounded">
-                      {item.platform}
+                      {item.source}
                     </span>
                   </div>
                 ))
@@ -100,7 +100,7 @@ const Content = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
             (activeFilter === "reddit" || activeFilter === "youtube")
               ? fetchedData
                   ?.filter((value) => activeFilter === value.source)
-                  .map((item, index) => (
+                  .map((item) => (
                     <div
                       key={item.id}
                       className="p-4 shadow-md cursor-pointer border-b-[0.1px] border-neutral-800 space-y-2 hover:bg-neutral-800"
@@ -112,7 +112,7 @@ const Content = ({ isSidebarOpen }: { isSidebarOpen: boolean }) => {
                     >
                       {/*Thumbnail publishedat and channel */}
                       <div className="flex gap-2 items-center">
-                        <Thumbnail item={item} />
+                        <Thumbnail thumbnail={item.thumbnail} />
                         <p className="text-neutral-300 text-[13px]">
                           {item?.channel}
                         </p>
