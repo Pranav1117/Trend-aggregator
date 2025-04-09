@@ -1,4 +1,5 @@
 import axios from "axios";
+import { getRedditAccessToken } from "./reddit";
 
 const YT_API_KEY = process.env.YOUTUBE_API_KEY;
 
@@ -87,8 +88,14 @@ export async function fetchYouTubeEngagement() {
 
 export async function fetchRedditEngagement(subreddit = "all") {
   try {
+    const accessToken = await getRedditAccessToken();
     const url = `https://www.reddit.com/r/${subreddit}/top.json?t=day&limit=10`;
-    const { data } = await axios.get(url);
+    const { data } = await axios.get(url, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "User-Agent": `my-app/0.1 by u/${process.env.REDDIT_USERNAME}`,
+      },
+    });
     if (!data.data) return [];
     return data.data.children.map((post: RedditPostItem) => ({
       id: post.data.id,
