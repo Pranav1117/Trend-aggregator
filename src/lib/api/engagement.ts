@@ -2,6 +2,55 @@ import axios from "axios";
 
 const YT_API_KEY = process.env.YOUTUBE_API_KEY;
 
+interface YouTubeVideoItem {
+  id: string;
+  snippet: {
+    channelTitle: string;
+    title: string;
+    description?: string;
+    publishedAt: string;
+    thumbnails: {
+      medium: {
+        url: string;
+      };
+    };
+  };
+  statistics: {
+    likeCount?: string;
+    viewCount: string;
+    commentCount?: string;
+  };
+}
+
+interface RedditComment {
+  data: {
+    body: string;
+  };
+}
+
+interface YouTubeCommentThread {
+  snippet: {
+    topLevelComment: {
+      snippet: {
+        textDisplay: string;
+      };
+    };
+  };
+}
+interface RedditPostItem {
+  data: {
+    id: string;
+    subreddit_name_prefixed: string;
+    title: string;
+    selftext?: string;
+    thumbnail: string;
+    ups: number;
+    num_comments: number;
+    total_awards_received?: number;
+    permalink: string;
+    approved_at_utc?: number;
+  };
+}
 export async function fetchYouTubeEngagement() {
   try {
     const url = `https://www.googleapis.com/youtube/v3/videos`;
@@ -15,7 +64,7 @@ export async function fetchYouTubeEngagement() {
 
     const { data } = await axios.get(url, { params });
     if (!data.items) return [];
-    return data.items.map((video: any) => ({
+    return data.items.map((video: YouTubeVideoItem) => ({
       id: video.id,
       source: "YouTube",
       channel: video.snippet.channelTitle,
@@ -26,7 +75,7 @@ export async function fetchYouTubeEngagement() {
         ? parseInt(video?.statistics.likeCount)
         : 0,
       views: parseInt(video?.statistics.viewCount),
-      comments: parseInt(video?.statistics.commentCount || 0),
+      comments: parseInt(video?.statistics.commentCount || "0"),
       url: `https://www.youtube.com/watch?v=${video?.id}`,
       publishAt: video.snippet.publishedAt,
     }));
@@ -41,7 +90,7 @@ export async function fetchRedditEngagement(subreddit = "all") {
     const url = `https://www.reddit.com/r/${subreddit}/top.json?t=day&limit=10`;
     const { data } = await axios.get(url);
     if (!data.data) return [];
-    return data.data.children.map((post: any) => ({
+    return data.data.children.map((post: RedditPostItem) => ({
       id: post.data.id,
       source: "Reddit",
       channel: post.data.subreddit_name_prefixed,
@@ -70,13 +119,16 @@ export async function fetchDiscussions(
       response = await axios.get(
         `https://www.reddit.com/comments/${postId}.json`
       );
-      return response.data[1].data.children.map((c: any) => c.data.body);
+      return response.data[1].data.children.map(
+        (c: RedditComment) => c.data.body
+      );
     } else if (platform.toLowerCase() === "youtube") {
       response = await axios.get(
         `https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=${postId}&key=${process.env.YOUTUBE_API_KEY}`
       );
       return response.data.items.map(
-        (c: any) => c.snippet.topLevelComment.snippet.textDisplay
+        (c: YouTubeCommentThread) =>
+          c.snippet.topLevelComment.snippet.textDisplay
       );
     }
   } catch (error) {
