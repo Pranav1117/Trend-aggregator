@@ -31,7 +31,7 @@ const PostSummary = () => {
   }, [platform, id]);
 
   return (
-      <div className="bg-neutral-900 text-white min-h-[100vh]">
+      <div className="bg-neutral-900 text-white min-h-[100vh] mt-18">
         {" "}
         <div className="pt-22 p-6 md:p-0 md:w-[60%] mx-auto">
           <div className="mb-8 border-b-1 border-gray-600 py-3">
